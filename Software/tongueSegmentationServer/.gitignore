@@ -1,0 +1,11 @@
+# Ignore compiled python files
+/__pycache__/
+# Ignore log files:
+/logs/
+# Ignore neural networks
+/networks/
+# Ignore private files
+/private/
+# Ignore specific files:
+/TODO.txt
+Auth.json

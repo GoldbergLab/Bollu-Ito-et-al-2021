@@ -1,0 +1,199 @@
+<html>
+<head>
+  {headLinksHTML}
+</head>
+<body>
+  {navBarHTML}
+  <div class="section">
+    <div class="container">
+      <h1 class="section-heading">
+        Segmentation Processor for Images of Tongues (SPIT)
+      </h1>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <h4 class="three columns"
+            aria-label="Create a new tongue segmentation job.
+              Once all jobs ahead in line are done, your job will automatically start.
+              You do not need to keep the browser window open - it will run independently."
+            data-balloon-pos="down"
+            data-balloon-length="large">
+          Create new job:
+        </h4>
+      </div>
+      <form action="/finalizeJob" method="POST">
+        <div class="row">
+          <label class="three columns" for="jobName"
+              aria-label="Enter a name or description of job to make it easier to remember what's going on later."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Job name/description:
+          </label>
+          <input class="nine columns" type="text" id="jobName" name="jobName" value="My job">
+        </div>
+        <div class="row">
+          <label class="three columns" for="rootMountPoint"
+              aria-label="Choose one of the drives/network shares available to the segmentation server which contains your videos. Normally you will be selecting a shared network drive."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Root mount point:
+          </label>
+          <select class="nine columns" name="rootMountPoint" id="rootMountPoint">
+          {mopts}
+          </select>
+        </div>
+        <div class="row">
+          <label class="three columns" for="videoRoot"
+              aria-label="Specify one or more video directories where your videos live.
+                The directories must be accessible to the segmentation server (either on a local drive, or more likely, on a shared drive).
+                The root of this path will be replaced by the root you select above, so you don't have to worry about the drive letter or mount point.
+                The easiest way is to copy and paste the path to each directory as you see it on your computer.
+                Note that your masks will all go in one folder, even if you specify multiple video folders."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Video root directories (one per line):
+          </label>
+          <textarea class="nine columns" rows="3" cols="30" id="videoRoot" name="videoRoot" value=""></textarea>
+        </div>
+        <div class="row">
+          <label class="three columns" for="videoFilter"
+              aria-label="Enter a filename filter to select which videos to include.
+                You may use the * wildcard.
+                Leave simply as * to select all videos within the specieid directories."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Video filename filter:
+          </label>
+          <input class="nine columns" type="text" id="videoFilter" name="videoFilter" value="*">
+        </div>
+        <div class="row">
+          <label class="three columns" for="maskSaveDirectory"
+              aria-label="Specify a directory that you want the masks to be saved in.
+                As with the video directories, the directory must be accessible to the segmentation server
+                (either on the server computer, or on a network drive accessible to it),
+                and whatever root is specified in the path will be replaced with the selected root."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Mask save directory:
+          </label>
+          <input class="nine columns" type="text" id="maskSaveDirectory" name="maskSaveDirectory" value="">
+        </div>
+        <div class="row">
+            <label class="label-body three columns" for="windowsStyle"
+                aria-label="Are the paths you specified above formatted as a Windows path?
+                  If you are running Windows, and you copy-pasted the path, choose this option."
+                data-balloon-pos="down"
+                data-balloon-length="fit">
+              Windows-style paths
+            </label>
+            <input class="one column large-radio" type="radio" id="windowsStyle" name="pathStyle" value="windowsStylePaths" checked>
+        </div>
+        <div class="row">
+          <label class="label-body three columns" for="posixStyle"
+              aria-label="Are the paths you specified above formatted as a Mac/Linux path?
+                If you are running Mac OS or Linux, and you copy-pasted the path, choose this option."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Mac/Linux-style paths
+          </label>
+          <input class="one column large-radio" type="radio" id="posixStyle" name="pathStyle" value="posixStylePaths">
+        </div>
+        <div class="row">
+          <label class="three columns" class="six columns" for="topNetworkName"
+              aria-label="Select a trained neural network to use to segment the top part of the videos.
+                If the network you want to use is not in this list, ask the server administrator to add it to the list of available networks."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Top neural network name:
+          </label>
+          <select class="nine columns" name="topNetworkName" id="topNetworkName">
+          {nopts_top}
+          </select>
+        </div>
+        <div class="row">
+          <label class="three columns" class="six columns" for="botNetworkName"
+              aria-label="Select a trained neural network to use to segment the bottom part of the videos.
+                If the network you want to use is not in this list, ask the server administrator to add it to the list of available networks."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Bot neural network name:
+          </label>
+          <select class="nine columns" name="botNetworkName" id="botNetworkName">
+          {nopts_bot}
+          </select>
+        </div>
+        <div class="row">
+          <label class="three columns" for="topOffset"
+              aria-label="Specify how far from the top of the video the top mask should begin, in pixels.
+                For example, if the top of the top mask should be 20 pixels below the top of the video, enter 20."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Top mask vertical offset:
+          </label>
+          <input class="two columns" type="number" id="topOffset" name="topOffset" min="0" step="1" value="0">
+        </div>
+        <div class="row">
+          <label class="three columns" for="topHeight"
+              aria-label="Optional - specify the desired height of the top mask, in pixels.
+                If you want to allow the neural network settings to determine the mask height (most likely), leave this blank."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Top mask height:
+          </label>
+          <input class="two columns" type="number" id="topHeight" name="topHeight" min="0" step="1" value="">
+        </div>
+        <div class="row">
+          <label class="three columns" for="botHeight"
+              aria-label="Optional - specify the desired height of the bottom mask, in pixels.
+                If you want to allow the neural network settings to determine the mask height (most likely), leave this blank."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Bottom mask height:
+          </label>
+          <input class="two columns" type="number" id="botHeight" name="botHeight" min="0" step="1" value="">
+        </div>
+        <div class="row">
+          <label class="three columns" for="binaryThreshold"
+              aria-label="Specify the probability threshold (between 0 and 1) above which a pixel should be considered to contain tongue.
+                The neural network outputs a map of prediction probabilities indicating how likely it is that each pixel contains the tongue.
+                To transform this into a binary segmentation of where the tongue is or is not, you must threshold the probability map.
+                Any pixels with probabilities of tongue greater than the threshold are considered to offically be tongue pixels.
+                Any pixels with probabilities below the threshold are considered to officially be not-tongue pixels."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Binary Threshold:
+          </label>
+          <input class="two columns" type="number" id="binaryThreshold" name="binaryThreshold" min="0" max="1" step="0.001" value="0.3">
+        </div>
+        <div class="row">
+          <label class="three columns" for="generatePreview"
+              aria-label="Should the server generate an animated gif preview of each mask as it gets made,
+                allowing you to see the results live in your browser? It adds a second or two of processing time per video, depending on the video sizes."
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Generate mask previews?
+          </label>
+          <input class="two columns large-checkbox" type="checkbox" id="generatePreview" name="generatePreview" checked>
+        </div>
+        <div class="row">
+          <label class="three columns" for="skipExisting"
+              aria-label="If a mask already exists, should we skip it? Or generate it and overwrite?"
+              data-balloon-pos="down"
+              data-balloon-length="fit">
+            Skip existing masks?
+          </label>
+          <input class="two columns large-checkbox" type="checkbox" id="skipExisting" name="skipExisting">
+        </div>
+        <div aria-label="Create the segmentation job with the specified parameters.
+              You will be asked to confirm the parameters before the job is enqueued."
+            data-balloon-pos="down"
+            data-balloon-length="fit">
+          <input class="button button-primary u-full-width" type="submit" value="Initialize job">
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

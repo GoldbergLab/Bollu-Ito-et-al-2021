@@ -1,0 +1,73 @@
+<html>
+  <head>
+    {headLinksHTML}
+  </head>
+  <body>
+    {navBarHTML}
+    <div class="section">
+      <div class="container">
+        <h1 class="section-heading">
+          Finalize job
+        </h1>
+      </div>
+    </div>
+    <div class="section">
+      <div class="container">
+        <div class="row">
+          <div class='twelve columns'>
+            There are <strong>{jobsAhead} jobs</strong> ahead of you with <strong>{videosAhead} videos</strong> remaining. Your job (Job ID {jobID}) will be enqueued to start as soon as any/all previous jobs are done.
+          </div>
+        </div>
+        <div class="row">
+          <div class='twelve columns'>
+            Please review the following job specifications and confirm if correct:
+          </div>
+        </div>
+        <div class="row">
+          <div class="three columns">Job description:</div><div class="nine columns"><strong>{jobName}</strong></div>
+        </div>
+        <div class="row">
+          <details class="twelve columns">
+              <summary>List of video files:</summary>
+              <ul>
+                  {videoList}
+              </ul>
+          </details>
+        </div>
+        <div class="row">
+          <div class="three columns">Chosen top neural network:</div><div class="nine columns"><strong>{topNetworkName}</strong></div>
+        </div>
+        <div class="row">
+          <div class="three columns">Chosen bottom neural network:</div><div class="nine columns"><strong>{botNetworkName}</strong></div>
+        </div>
+        <div class="row">
+          <div class="three columns">Top mask vertical offset:</div><div class="nine columns"><strong>{topOffset}</strong></div>
+        </div>
+        <div class="row">
+          <div class="three columns">Top mask height:</div><div class="nine columns"><strong>{topHeight}</strong></div>
+        </div>
+        <div class="row">
+          <div class="three columns">Bottom mask height:</div><div class="nine columns"><strong>{botHeight}</strong></div>
+        </div>
+        <div class="row">
+          <div class="three columns">Binary mask threshold:</div><div class="nine columns"><strong>{binaryThreshold}</strong></div>
+        </div>
+        <div class="row">
+          <div class="three columns">Generate mask previews:</div><div class="nine columns"><strong>{generatePreview}</strong></div>
+        </div>
+        <div class="row">
+          <div class="three columns">Skip existing masks:</div><div class="nine columns"><strong>{skipExisting}</strong></div>
+        </div>
+        <div class="row">
+          <form action="/confirmJob/{jobID}">
+              <input class="five columns button button-primary" type="submit" value="Confirm and enqueue job" />
+          </form>
+          <div class="two columns"></div>
+          <form action="/cancelJob/{jobID}">
+              <input class="five columns button button" type="submit" value="Cancel job" />
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

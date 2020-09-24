@@ -1,0 +1,43 @@
+k,Lick index (for the whole session)
+id,"A numerical index indicating which t_stats file each row comes from, 1 being the first t_stats file, 2 being the second, and so on."
+name,The filename (and possibly path) of the t_stats file each row comes from.
+centroid_x, X (ML) coordinate of 3D centroid of tongue
+centroid_y, Y (AP) coordinate of 3D centroid of tongue
+centroid_z, Z (DV) coordinate of 3D centroid of tongue
+tip_x, X (ML) coordinate of tip
+tip_y, Y (AP) coordinate of tip
+tip_z, Z (DV) coordinate of tip
+tip_x_raw, Pre-filtered X (ML) coordinate of tip
+tip_y_raw, Pre-filtered Y (AP) coordinate of tip
+tip_z_raw, Pre-filtered Z (DV) coordinate of tip
+magspeed_c, Speed of the centroid
+magspeed_t, Speed of the tip
+pathlength_3D_c, Length of the centroid's path for this lick
+pathlength_3D_t, Length of the tip's path for this lick
+accel_peaks_pos_t, number of 'positive' acceleration peaks estimated from tip trajectories
+accel_peaks_tot_t, number of total acceleration peaks estimated from tip trajectories
+accel_peaks_pos_c, number of 'positive' acceleration peaks estimated from centroid trajectories
+accel_peaks_tot_c, number of total acceleration peaks estimated from centroid trajectories
+dur, Duration of lick (ms)
+redir_pts, Points of sharp turns in the tip trajectory (coincident minima of radius of curvature and speed)
+seginfo, detailed kinematics of 'submovements' detected from the redir_pts
+rad_curv, Instantaneous radius of curvature
+tort, Tortuosity of path of tip
+time_rel_cue, Time elapsed between cue and lick start (ms)
+laser_trial, Was the laser on during this trial?
+laser, Was the laser on during this lick?
+trial_num, Trial number
+volume, Estimated protrusion volume of tongue
+pairs, Lick onset and offset pairs (ms) from the video file
+prot_ind, Index (time in ms) when the protrusion finished
+ret_ind, Index (time in ms) when the retraction started
+ILM_dur, Duration (ms) of ILM
+ILM_pathlength, Length of the tip's path during the ILM
+ILM_PeakSpeed, Peak speed of the tip during the ILM
+ILM_NumAcc, number of acceleration peaks during the ILM
+lick_index, Lick number since cue
+lick_type, (1):first lick after cue that makes spout contact (2):lick after (1) 'retrieval lick' …
+spout_contact, Time (ms) since cue when spout contact occurred (NaN if no spout contact)
+prev_spcontact, Time since previous spout contact 
+row,A special variable that takes the integer row number of the axis in which the expression is being plotted
+col,A special variable that takes the integer column number of the axis in which the expression is being plotted

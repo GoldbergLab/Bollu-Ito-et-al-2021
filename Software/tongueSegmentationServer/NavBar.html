@@ -1,0 +1,33 @@
+<script>
+  function openDrawerMenu(){{
+    var x = document.getElementById("mainNavBar");
+    if (!x.classList.contains("responsive")){{
+      x.classList.add("responsive");
+    }} else {{
+      x.classList.remove("responsive");
+    }}
+  }}
+
+  function logout() {{
+    var logoutRequest = new XMLHttpRequest();
+    logoutRequest.addEventListener("load", login);
+    logoutRequest.open("get", ".", true, "none", "none")
+    logoutRequest.send()
+  }}
+
+  function login() {{
+    location.reload();
+  }}
+</script>
+<div class="navBar" id="mainNavBar">
+  <a class="navBarElement" href="/">New job</a>
+  <a class="navBarElement" href="/serverManagement">Server manager</a>
+  <a class="navBarElement" href="/myJobs">My jobs</a>
+  <span class="navBarElement">User: {user}</span>
+  <a class="navBarElement" href="." onclick="logout(); return false;">Switch user</a>
+  <a class="navBarElement" href="/changePassword">Change password</a>
+  <a class="navBarElement" href="/help">Help</a>
+  <span class="navBarElement" id="serverStatus">{serverStatus}</span>
+  <a class="icon navBarElement" href="javascript:void(0);" onClick="openDrawerMenu()">&#9776;</a>
+  <!--&#9776; is the code for the 3 line menu button-->
+</div>

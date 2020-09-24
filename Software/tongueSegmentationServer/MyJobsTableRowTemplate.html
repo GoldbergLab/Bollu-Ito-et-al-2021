@@ -1,0 +1,24 @@
+<tr>
+  <td>
+    {jobNum}
+  </td>
+  <td>
+    {jobDescription}
+  </td>
+  <td>
+    {percentComplete} %
+  </td>
+  <td>
+    {state}
+  </td>
+  <td>
+    <form action="/checkProgress/{jobNum}">
+        <input class="button button-primary" type="submit" value="Check progress" />
+    </form>
+  </td>
+  <td>
+    <form action="/cancelJob/{jobNum}" onsubmit="return confirmTerminate({jobNum})">
+        <input class="button button-warning" type="submit" value="Terminate Job" />
+    </form>
+  </td>
+</tr>

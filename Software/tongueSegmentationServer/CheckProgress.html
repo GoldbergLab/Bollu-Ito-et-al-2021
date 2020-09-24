@@ -1,0 +1,143 @@
+<html>
+  <head>
+    {headLinksHTML}
+    <script>
+      var reloaderID;
+      if (!{processDead}) {{
+        var reloadInterval = {autoReloadInterval};
+        var reloaderID = window.setInterval(reloader, reloadInterval);
+        function reloader() {{
+          if (document.getElementById("reloadCheckbox").checked) {{
+            location.reload();
+          }}
+        }}
+      }}
+
+      function confirmTerminate() {{
+        if (!(reloaderID == null)) {{
+          document.getElementById("reloadCheckbox").checked = false;
+          clearInterval(reloaderID);
+        }}
+        var reallyTerminate = confirm("Are you sure you want to terminate this job? Completed masks will remain. Click 'Ok' to terminate, 'Cancel' to allow job to continue.")
+        return reallyTerminate;
+      }}
+    </script>
+    <body>
+      {navBarHTML}
+      <div class="section">
+        <div class="container">
+          <h1>Job Progress</h1>
+          <h2>Job {jobNum} {exitCodePhrase}</h2>
+          <h4>{stateDescription}</h4>
+        </div>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="row">
+            <section class="eight columns">
+              <h4>Job info:</h4>
+              <div class="row">
+                <div class="three columns">Description: </div><div class="nine columns"><strong>{jobName}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Owner: </div><div class="nine columns"><strong>{owner}</strong></div>
+              </div>
+              <div class="row">
+                <progress class="twelve columns" id="percentDone" value="{percentComplete}" max="100">{percentComplete} %</progress>
+              </div>
+              <div class="row">
+                <div class="three columns">Percent complete:</div><div class="nine columns"><strong>{percentComplete} %</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Number complete:</div><div class="nine columns"><strong>{numComplete}/{numTotal}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Estimated time remaining:</div><div class="nine columns"><strong>{estimatedTimeRemaining}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Processing time per video: </div><div class="nine columns"><strong>{meanTime} &plusmn; {confInt} s</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Job creation time: </div><div class="nine columns"><strong>{creationTime}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Job start time:</div><div class="nine columns"><strong>{startTime}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Job end time: </div><div class="nine columns"><strong>{completionTime}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Chosen top neural network:</div><div class="nine columns"><strong>{topNetworkName}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Chosen bot neural network:</div><div class="nine columns"><strong>{botNetworkName}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Top mask vertical offset:</div><div class="nine columns"><strong>{topOffset}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Top mask height:</div><div class="nine columns"><strong>{topHeight}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Bottom mask height:</div><div class="nine columns"><strong>{botHeight}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Binary mask threshold:</div><div class="nine columns"><strong>{binaryThreshold}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Generate preview:</div><div class="nine columns"><strong>{generatePreview}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Skip existing masks:</div><div class="nine columns"><strong>{skipExisting}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Job state: </div><div class="nine columns"><strong>{jobStateName}</strong></div>
+              </div>
+              <div class="row">
+                <div class="three columns">Auto-reload</div>
+                <input class="one column large-checkbox" type="checkbox" id="reloadCheckbox" name="reloadCheckbox" checked>
+              </div>
+              <div class="row">
+                <form action="/cancelJob/{jobNum}" onsubmit="return confirmTerminate();">
+                    <input class="button" type="submit" value="Terminate Job" />
+                </form>
+              </div>
+              <div class="row">
+                <div>
+                  <details>
+                    <summary>List of completed video files:</summary>
+                      <ul>
+                        {videoList}
+                      </ul>
+                  </details>
+                  <details>
+                    <summary>Debug output:</summary>
+                      {logHTML}
+                  </details>
+                </div>
+              </div>
+            </section>
+            <section class="four columns" {hidePreview}>
+              <div class="container">
+                <div class="row">
+                  <h4>Latest output preview:</h4>
+                </div>
+                <div class="row" style="margin-bottom: 5px">
+                  <div class="four columns" style="font-size: 0.75em; text-align: right;">Top masks:</div>
+                  <div class="eight columns">
+                    <img class="u-max-full-width" src="{topMaskPreviewSrc}">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="four columns" style="font-size: 0.75em; text-align: right;">Bottom masks:</div>
+                  <div class="eight columns">
+                    <img class="u-max-full-width" src="{botMaskPreviewSrc}">
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </body>
+</html>

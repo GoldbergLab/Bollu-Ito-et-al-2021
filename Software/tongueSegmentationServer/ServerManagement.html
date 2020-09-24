@@ -1,0 +1,67 @@
+<html>
+  <head>
+    {headLinksHTML}
+    <script>
+      var reloadInterval = {autoReloadInterval};
+      var reloaderID = window.setInterval(reloader, reloadInterval);
+      function reloader() {{
+        if (document.getElementById("reloadCheckbox").checked) {{
+          location.reload();
+        }}
+      }}
+
+      function confirmTerminate(jobNum) {{
+        var reallyTerminate = confirm("Are you sure you want to terminate job #"+jobNum+"? Completed masks will remain. Click 'Ok' to terminate, 'Cancel' to allow job to continue.")
+        return reallyTerminate;
+      }}
+      function confirmRestart() {{
+        var reallyRestart = confirm("Are you sure you want to restart the server? This will wipe out all jobs. Completed masks will remain. Click 'Ok' to restart, 'Cancel' to allow job to continue.")
+        return reallyRestart;
+      }}
+    </script>
+  </head>
+  <body>
+    {navBarHTML}
+    <div class="section">
+      <div class="container">
+        <h1>Server Management</h1>
+        <div class="row">
+          <div class="three columns">Server start time:</div>
+          <div class="nine columns"><strong>{startTime}</strong></div>
+        </div>
+        <div class="row">
+          <form action="/restartServer" onsubmit="return confirmRestart()">
+              <input class="button button-deadly" type="submit" value="Restart server" />
+          </form>
+          <form action="/reloadAuth" onsubmit="return reloadAuth()">
+              <input class="button" type="submit" value="Reload auth file" />
+          </form>
+        </div>
+        <h4>Job info:</h4>
+        <table class="u-full-width">
+          <thead>
+            <tr>
+              <th>Job #</th>
+              <th>Job name</th>
+              <th>Job owner</th>
+              <th>% complete</th>
+              <th># videos</th>
+              <th>Confirmed?</th>
+              <th>Cancelled?</th>
+              <th>State</th>
+              <th>Check progress</th>
+              <th>Terminate job</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tbody}
+          </tbody>
+        </table>
+        <div class="row">
+          <div class="three columns">Auto-reload</div>
+          <input class="one column" style="width: 20px; height: 20px;" type="checkbox" id="reloadCheckbox" name="reloadCheckbox" checked>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

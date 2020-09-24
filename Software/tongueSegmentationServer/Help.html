@@ -1,0 +1,122 @@
+<html>
+<head>
+  {headLinksHTML}
+</head>
+<body>
+  {navBarHTML}
+  <div class="section">
+    <div class="container">
+      <h1 class="section-heading">
+        Segmentation Processor for Images of Tongues (SPIT)
+      </h1>
+    </div>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="row">
+        <h2>Help</h2>
+      </div>
+      <div class="row">
+        <h4>Videos &#8594; Masks</h4>
+      </div>
+      <div class="row subsection">
+        SPIT is a web server that uses neural networks to segment your mouse tongue videos to produce a pair of mask stacks for each video.
+        Masks are binary (black/white) images that represent a determination of whether each pixel of the original videos
+        is part of a mouse tongue or not. In these masks, black pixels in the masks represent pixels in your original video that have been
+        judged to NOT be part of a mouse tongue. White pixels in the masks represent pixels in your original video that have been judged
+        INDEED to be part of a mouse tongue. A mask stack is a series of masks with each mask corresponding to a frame in a video.
+      </div>
+      <hr>
+      <div class="row">
+        <h4>Top and Bot</h4>
+      </div>
+      <div class="row subsection">
+        Our current equipment is capable of imaging the mouse from two directions in each frame - from the side
+        and from the bottom. Thus, the web server will split up the video into two mask stacks - the "Top" and "Bot" mask stacks. The "Top" masks contain
+        the side view of the mouse. The "Bot" masks contain the videw from below. From each video, the server will generate two files, called
+        "Top_XXX.mat", and "Bot_XXX.mat", which contain the mask stacks corresponding to video number XXX.
+      </div>
+      <hr>
+      <div class="row">
+        <h4>So how do I use it?</h4>
+      </div>
+      <div class="row subsection">
+        <ol>
+          <li>
+            Go to the "<strong>New job</strong>" page (linked in the nav bar above). Enter parameters for where and how to segment your videos. You will be taken to the "Finalize job" page.
+          </li>
+          <li>
+            On the "<strong>Finalize job</strong>" page look over the parameters you chose, and click "Finalize job" if they are correct. You will be taken to the "Check progress" page.
+          </li>
+          <li>
+            On the "<strong>Check progress</strong>" page, you can monitor the progress of your job. You do NOT need to keep the browser tab open - closing it will not affect your job.
+            If you wish, you can bookmark the "Check progress" page so you can come back to it later. That page will remain connected to your job until one day after the job
+            terminates.
+          </li>
+          <li>
+              As your job progresses, the "<strong>Check progress</strong>" page will show statistics, as well as a preview of the most recently created masks.
+              If another job is already running on the server, your job will be put in a queue, and will start automatically when it is at the front
+              of the queue. If you wish to change your job's parameters, you can always terminate the job from the "Check progress" screen and resubmit a new job,
+              but your new job will go to the back of the queue if there are other jobs waiting.
+          </li>
+          <li>
+            When your job is done, you can find the completed mask stack files in whatever folder you specified as the mask output folder.
+          </li>
+        </ol>
+      </div>
+      <hr>
+      <div class="row"><h4>FAQ</h4></div>
+      <div class="row subsection">
+        <div class="row"><h5>Where should I put my videos?</h5></div>
+        <div class="row">
+          Your videos must be in one or more folders that the segmentation server has access to.
+          The simplest thing is to add them to the Mouse Drive, which is mounted on the segmentation server.
+        </div>
+        <div class="row"><h5>What is the "root mount point?</h5></div>
+        <div class="row">
+          That specifies what drive/network share the server should look on to find the folders you've specified.
+          The simplest thing to do is to put your videos on the Mouse Drive, and tell the server to look on the Mouse Drive.
+        </div>
+        <div class="row"><h5>How do I write the paths to my video and mask folders?</h5></div>
+        <div class="row">
+          You can copy/paste the path to the folder exactly as it appears on your computer.
+          The server will take care of replacing the mount point with the correct local mount point name.
+        </div>
+        <div class="row"><h5>Do I have to keep the browser window open until the job is done?</h5></div>
+        <div class="row">
+          No, you are free to close the browser window - the job will continue to work or wait in the queue.
+          If you want, you can bookmark the "check progress" page so you can come back to it later. Alternatively,
+          you can write down your job's ID number, and then point your browser to
+          http://as-nbb-gold-40.ad.cornell.edu/checkProgress/<strong>N</strong>, where "N" is your job ID number.
+          </nav>
+        </div>
+        <div class="row"><h5>It says my job exited with errors. What should I do?</h5></div>
+        <div class="row">
+          Probably slack @bkardon.
+        </div>
+        <div class="row"><h5>What if my tongue segmentation does not result in publishable results?</h5></div>
+        <div class="row">
+          Hey, science is tough - take it easy on yourself, get some sleep, try again tomorrow. It's not supposed to be easy,
+          and if other people are making it look easy, they're just not letting it show. It's also a team sport, so ask for help
+          if you need it, because everyone needs it. You can do it!
+        </div>
+        <div class="row"><h5>I can't connect to the site!</h5></div>
+        <div class="row">
+          Well, I don't really know how you're reading this FAQ if you can't connect to the site, but ok.
+          If your browser fails to load the website, and gives you an error page with a message like
+          <code>This site can't be reached: as-nbb-gold-40.ad.cornell.edu took too long to respond.</code>,
+          then you are probably off campus and not using the Cornell VPN. The server is hosted within the NBB
+          network, so it is only accessible if you are on a Cornell network, or the VPN is running on your computer.
+          <a href="https://it.cornell.edu/cuvpn">Click here</a> for instructions for installing and operating the Cornell VPN.
+        </div>
+        <div class="row"><h5>Who made all this stuff?</h5></div>
+        <div class="row">
+          Dr. Teja Bollu created the code that segments tongue videos. Brian Kardon wrapped it in a website.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section" style="margin-bottom: 100px;">
+  </div>
+</body>
+</html>
