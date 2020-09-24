@@ -11,6 +11,6 @@ The [tongueTipTrackerApp](tongueTipTrackerApp), a MATLAB GUI, allows the user to
 ### Step 3: Tongue kinematics ==4==> Visualization
 The [tongueTipVisualizerApp](tongueTipVisualizerApp), a MATLAB GUI, is designed to flexibly visualize and explore the tongue kinematics data in one or more .mat files created by tongueTipTrackerApp. 
 ### Step 1a: High speed mouse lick video ==> Manually created binary tongue masks
-In order to train the neural networks, it is first necessary to manually create a training set of tongue masks. The [manualObjectTracker](manualObjectTracker), a MATLAB GUI, allows the user to manually segment the tongue in mouse tongue videos.
+The [manualObjectTracker](manualObjectTracker), a MATLAB GUI, allows the user to manually segment the tongue in mouse tongue videos to create training sets to train the neural networks used in step 1. 
 ### Step 1b: Manually created binary tongue masks ==> Trained neural network
 The manually created tongue masks can be used to create a trained neural network that can subsequently automatically segment mouse tongues, saving a large amount of labor and reducing the possibility of experimenter bias.
