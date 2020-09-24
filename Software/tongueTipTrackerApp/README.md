@@ -1,2 +1,2 @@
 # tongueTipTrackerApp
-A MATLAB GUI for tracking the tip of a mouse tongue in binary tongue mask videos.
+A MATLAB GUI for automatically processing binary tongue mask videos to extract kinematic and geometric measures of the tongue.
