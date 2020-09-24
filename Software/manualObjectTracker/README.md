@@ -1,6 +1,6 @@
 # manualObjectTracker
 
-manualObjectTracker is a MATLAB GUI for manually tracking objects in videos, for generating training sets for machine learning algorithms.
+manualObjectTracker is a MATLAB GUI for manually tracking objects in videos, for generating training sets for machine learning algorithms. The training sets can be used to train networks for use in [tongueSegmentationServer](../tongueSegmentationServer).
 
 manualObjectTracker was developed with and for MATLAB R2017a. Use it with other versions of MATLAB at your own risk.
 
