@@ -8,7 +8,7 @@ The pieces of software here are used to prepare the high speed videos for analys
 The [tongueSegmentationServer](tongueSegmentationServer), a python client/server application, employs a trained neural network (created in step 1b) to convert a video of a mouse tongue to a series of binary masks indicating which pixels in the video contain tongue, and which do not.
 ### Step 2: Binary tongue mask videos ==> Tongue kinematics
 The [tongueTipTrackerApp](tongueTipTrackerApp), a MATLAB GUI, allows the user to analyze the binary mask stacks created by tongueSegmentationServer, and extract measures of tongue kinematics and geometry, stored in a .mat file.
-### Step 3: Tongue kinematics ==4==> Visualization
+### Step 3: Tongue kinematics ==> Visualization
 The [tongueTipVisualizerApp](tongueTipVisualizerApp), a MATLAB GUI, is designed to flexibly visualize and explore the tongue kinematics data in one or more .mat files created by tongueTipTrackerApp. 
 ### Step 1a: High speed mouse lick video ==> Manually created binary tongue masks
 The [manualObjectTracker](manualObjectTracker), a MATLAB GUI, allows the user to manually segment the tongue in mouse tongue videos to create training sets to train the neural networks used in step 1. It is generally only necessary to do this once when setting up the experiment.
